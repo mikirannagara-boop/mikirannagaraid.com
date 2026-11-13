@@ -5,173 +5,302 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mikiran Nagara ID - Portal Analisis & Kebijakan Publik</title>
     <style>
+        :root {
+            --primary-color: #990000;
+            --text-main: #111111;
+            --text-muted: #555555;
+            --border-color: #e0e0e0;
+            --bg-light: #f8f9fa;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #f9f9fb;
-            color: #222;
+            font-family: Georgia, "Times New Roman", serif;
+            background-color: #ffffff;
+            color: var(--text-main);
             line-height: 1.6;
         }
-        /* Header & Navigasi */
+
+        /* Top Bar ala Koran */
+        .top-bar {
+            background-color: var(--bg-light);
+            border-bottom: 1px solid var(--border-color);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            padding: 8px 0;
+        }
+
+        .top-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Header & Logo */
         header {
-            background-color: #ffffff;
-            border-bottom: 1px solid #eaeaea;
+            border-bottom: 3px double var(--border-color);
+            padding: 25px 0;
+            text-align: center;
+            background: #ffffff;
+        }
+
+        .logo-img {
+            max-height: 55px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        /* Navigasi Rubrik */
+        nav {
+            border-bottom: 1px solid var(--border-color);
+            background: #ffffff;
             position: sticky;
             top: 0;
             z-index: 100;
         }
-        .nav-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-        }
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #111;
-            text-decoration: none;
-        }
+
         nav ul {
+            max-width: 1200px;
+            margin: 0 auto;
             list-style: none;
             display: flex;
-            gap: 20px;
+            justify-content: center;
+            gap: 30px;
+            padding: 12px 20px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
+
         nav ul li a {
             text-decoration: none;
-            color: #555;
-            font-weight: 500;
-            font-size: 0.95rem;
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
             transition: color 0.2s;
         }
+
         nav ul li a:hover {
-            color: #000;
+            color: var(--primary-color);
         }
-        /* Konten Utama */
-        .main-container {
-            max-width: 1100px;
+
+        /* Layout Utama Grid ala Tempo */
+        .container {
+            max-width: 1200px;
             margin: 30px auto;
             padding: 0 20px;
         }
-        .hero-article {
-            background: #ffffff;
-            padding: 40px;
-            border-radius: 8px;
-            border: 1px solid #eaeaea;
-            margin-bottom: 30px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 2.2fr 1fr;
+            gap: 40px;
         }
-        .badge {
-            background-color: #eef2ff;
-            color: #4f46e5;
+
+        @media (max-width: 768px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Berita Utama (Headline) */
+        .headline {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 25px;
+            margin-bottom: 25px;
+        }
+
+        .category-tag {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             font-size: 0.75rem;
             font-weight: bold;
-            padding: 4px 10px;
-            border-radius: 4px;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+            display: inline-block;
+        }
+
+        h1.headline-title {
+            font-size: 2.1rem;
+            line-height: 1.25;
+            margin-bottom: 12px;
+        }
+
+        h1.headline-title a {
+            text-decoration: none;
+            color: var(--text-main);
+        }
+
+        h1.headline-title a:hover {
+            color: var(--primary-color);
+        }
+
+        .article-meta {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .headline-excerpt {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+        }
+
+        /* Sub Artikel & Sidebar */
+        .sub-article {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .sub-article h3 {
+            font-size: 1.05rem;
+            line-height: 1.4;
+            margin-top: 5px;
+        }
+
+        .sub-article h3 a {
+            text-decoration: none;
+            color: var(--text-main);
+        }
+
+        .sub-article h3 a:hover {
+            color: var(--primary-color);
+        }
+
+        .sidebar-title {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 1.05rem;
+            font-weight: bold;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 8px;
+            margin-bottom: 20px;
             text-transform: uppercase;
         }
-        h1 {
-            font-size: 2rem;
-            margin: 15px 0 10px 0;
-            color: #111;
-        }
-        .meta {
-            font-size: 0.85rem;
-            color: #777;
-            margin-bottom: 15px;
-        }
-        .snippet {
-            color: #555;
-            font-size: 1.05rem;
-        }
-        /* Grid Rubrik */
-        .grid-rubrik {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        .card {
-            background: #ffffff;
-            padding: 25px;
-            border-radius: 8px;
-            border: 1px solid #eaeaea;
-        }
-        .card h3 {
-            font-size: 1.2rem;
-            margin: 10px 0;
-            color: #111;
-        }
-        .card p {
-            font-size: 0.95rem;
-            color: #666;
-        }
+
         /* Footer */
         footer {
-            text-align: center;
-            padding: 30px;
-            margin-top: 50px;
-            border-top: 1px solid #eaeaea;
-            color: #777;
+            background-color: var(--text-main);
+            color: #ffffff;
+            padding: 35px 0;
+            margin-top: 60px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-container p {
             font-size: 0.85rem;
-            background: #ffffff;
+            color: #aaa;
         }
     </style>
 </head>
 <body>
 
-    <!-- Header & Navigasi -->
+    <!-- Baris Atas -->
+    <div class="top-bar">
+        <div class="top-container">
+            <span>Jum'at, 13 November 2026</span>
+            <span>Edisi Digital Kebijakan & Analisis Publik</span>
+        </div>
+    </div>
+
+    <!-- Header & Logo Gambar -->
     <header>
-        <div class="nav-container">
-            <a href="#" class="logo">
-    <img src="logo.png" alt="Mikiran Nagara ID" style="height: 55px; vertical-align: middle;">
-</a>
-            <nav>
-                <ul>
-                    <li><a href="#">Politik</a></li>
-                    <li><a href="#">Kebijakan Publik</a></li>
-                    <li><a href="#">Opini</a></li>
-                    <li><a href="#">Tentang Kami</a></li>
-                </ul>
-            </nav>
+        <div class="container" style="margin: 0 auto; padding: 0;">
+            <!-- Logo Gambar Anda (Pastikan nama file 'logo.png' sesuai dengan yang diunggah) -->
+            <a href="index.html">
+                <img src="logo.png" alt="Mikiran Nagara ID" class="logo-img">
+            </a>
         </div>
     </header>
 
-    <!-- Konten Utama -->
-    <div class="main-container">
-        
-        <!-- Artikel Utama (Hero) -->
-        <div class="hero-article">
-            <span class="badge">Kebijakan Publik</span>
-            <h1>Menata Arah Baru Pembangunan Berbasis Riset dan Partisipasi Sosial</h1>
-            <div class="meta">Dipublikasikan oleh Redaksi • 13 November 2026</div>
-            <p class="snippet">Portal analisis sosial dan politik hadir untuk menguliti akar persoalan kebijakan publik secara objektif, kritis, dan berpihak pada kepentingan masyarakat luas. Selamat datang di ruang diskursus alternatif.</p>
-        </div>
+    <!-- Navigasi Rubrik -->
+    <nav>
+        <ul>
+            <li><a href="#">Utama</a></li>
+            <li><a href="#">Politik</a></li>
+            <li><a href="#">Kebijakan Publik</a></li>
+            <li><a href="#">Hukum</a></li>
+            <li><a href="#">Opini</a></li>
+            <li><a href="#">Tentang Kami</a></li>
+        </ul>
+    </nav>
 
-        <!-- Daftar Rubrik / Kartu Artikel Pendukung -->
-        <div class="grid-rubrik">
-            <div class="card">
-                <span class="badge" style="background:#fef3c7; color:#d97706;">Politik</span>
-                <h3>Dinamika Representasi dan Suara Konstituen di Tingkat Lokal</h3>
-                <p>Menyoroti sejauh mana aspirasi akar rumput diterjemahkan menjadi produk kebijakan yang berdampak langsung.</p>
-            </div>
-            <div class="card">
-                <span class="badge" style="background:#ecfdf5; color:#059669;">Opini</span>
-                <h3>Refleksi Kritis: Menjaga Nalar Publik di Era Arus Informasi Cepat</h3>
-                <p>Esai pendek mengenai urgensi literasi kritis dalam membedah narasi sosial yang berseliweran di ruang digital.</p>
-            </div>
-        </div>
+    <!-- Konten Utama Portal -->
+    <div class="container">
+        <div class="main-grid">
+            
+            <!-- Kolom Kiri: Headline & Berita Pilihan -->
+            <div>
+                <div class="headline">
+                    <span class="category-tag">Kebijakan Publik</span>
+                    <h1 class="headline-title"><a href="#">Menata Arah Baru Pembangunan Berbasis Riset dan Partisipasi Sosial</a></h1>
+                    <div class="article-meta">Oleh Redaksi • 13 November 2026</div>
+                    <p class="headline-excerpt">Portal analisis sosial dan politik hadir untuk menguliti akar persoalan kebijakan publik secara objektif, kritis, dan berpihak pada kepentingan masyarakat luas.</p>
+                </div>
 
+                <div class="sub-article">
+                    <span class="category-tag">Politik</span>
+                    <h3><a href="#">Dinamika Representasi dan Suara Konstituen di Tingkat Lokal Menjelang Tahun Politik</a></h3>
+                    <div class="article-meta">13 November 2026</div>
+                </div>
+
+                <div class="sub-article">
+                    <span class="category-tag">Opini</span>
+                    <h3><a href="#">Refleksi Kritis: Menjaga Nalar Publik di Era Arus Informasi Cepat dan Algoritma</a></h3>
+                    <div class="article-meta">12 November 2026</div>
+                </div>
+            </div>
+
+            <!-- Kolom Kanan: Terkini -->
+            <div>
+                <div class="sidebar-title">Terkini</div>
+                
+                <div class="sub-article">
+                    <span class="category-tag">Hukum</span>
+                    <h3><a href="#">Urgensi Penguatan Pengawasan Independen dalam Anggaran Publik</a></h3>
+                    <div class="article-meta">2 jam lalu</div>
+                </div>
+
+                <div class="sub-article">
+                    <span class="category-tag">Sosial</span>
+                    <h3><a href="#">Membedah Angka Kemiskinan Perkotaan: Antara Data dan Realitas</a></h3>
+                    <div class="article-meta">4 jam lalu</div>
+                </div>
+
+                <div class="sub-article">
+                    <span class="category-tag">Ekonomi</span>
+                    <h3><a href="#">Subsidi Tepat Sasaran: Tantangan Birokrasi di Tengah Dinamika Global</a></h3>
+                    <div class="article-meta">6 jam lalu</div>
+                </div>
+            </div>
+
+        </div>
     </div>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2026 Mikiran Nagara ID. Seluruh hak cipta dilindungi.</p>
+        <div class="footer-container">
+            <p>&copy; 2026 Mikiran Nagara ID. Hak Cipta Dilindungi.</p>
+            <p>Jurnalisme Warga & Analisis Kebijakan Publik</p>
+        </div>
     </footer>
 
 </body>
